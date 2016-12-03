@@ -11,8 +11,8 @@ var mini = require('minimist-mini');
 
 // Opts are the same as in minimist
 var opts = [];
-opts.boolean = ['flag'];
-opts.string = ['help', 'test'];
+opts.boolean = ['help'];
+opts.string = ['test'];
 
 // Create object
 var m = new mini(opts);
