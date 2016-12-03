@@ -1,0 +1,31 @@
+{
+  "name": "minimist-mini",
+  "version": "1.0.0",
+  "description": "Mini minimist with auto generation of help using README.md (converted to text) as help - and simple parsing of option given to the CLI program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diversen/minimist-mini.git"
+  },
+  "keywords": [
+    "minimist",
+    "help",
+    "minimist",
+    "mini",
+    "minimist"
+  ],
+  "author": "Dennis Iversen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diversen/minimist-mini/issues"
+  },
+  "homepage": "https://github.com/diversen/minimist-mini#readme",
+  "dependencies": {
+    "get-value": "^2.0.6",
+    "minimist": "^1.2.0",
+    "remove-markdown": "^0.1.0"
+  }
+}
