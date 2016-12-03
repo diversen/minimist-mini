@@ -2,7 +2,7 @@ var mini = require('./index');
 
 // Opts are the same as in minimist
 var opts = [];
-opts.boolean = ['paste'];
+opts.boolean = ['boolean'];
 opts.string = ['help', 'test'];
 
 // Create object
@@ -22,5 +22,5 @@ if (test){
 // 'docs/cli.md
 //
 if (m.get('help')) {
-    mini.helpMessage();
+    m.helpMessage();
 }

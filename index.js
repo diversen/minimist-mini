@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 var removeMd = require('remove-markdown');
 
-function argv(opts) {
+function mini(opts) {
     
     // Parse with minimist
     this.parsed = require('minimist')(process.argv.slice(2), opts);
@@ -37,4 +37,4 @@ function argv(opts) {
     };
 };
 
-module.exports = argv;
+module.exports = mini;
