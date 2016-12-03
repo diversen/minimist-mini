@@ -11,24 +11,24 @@ var mini = require('minimist-mini');
 
 // Opts are the same as in minimist
 var opts = [];
-opts.boolean = ['paste'];
+opts.boolean = ['flag'];
 opts.string = ['help', 'test'];
 
 // Create object
 var m = new mini(opts);
 
-// Check if test is set
+// Check if test is set using --test
 var test = m.get('test');
 if (test){
     console.log(test);
 }
 
-// Check if help is set
+// Check if help is set using --help
 // and Output README.md as txt
 // if set
 //
 // You can also set a file from current path, e.g.
-// 'docs/cli.md
+// 'docs/cli.md (as param in mini.helpMessage)
 //
 if (m.get('help')) {
     mini.helpMessage();
