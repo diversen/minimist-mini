@@ -31,7 +31,7 @@ if (test){
 // 'docs/cli.md (as param in mini.helpMessage)
 //
 if (m.get('help')) {
-    mini.helpMessage();
+    m.helpMessage();
 }
 ~~~
 
