@@ -4,7 +4,7 @@ var path = require('path');
 var removeMd = require('remove-markdown');
 
 function mini(opts) {
-    
+
     // Parse with minimist
     this.parsed = require('minimist')(process.argv.slice(2), opts);
     
@@ -40,5 +40,7 @@ function mini(opts) {
     return this;
 };
 
-module.exports =  new mini;
+module.exports =  function(opts) {
+    return new mini(opts);
+}
 
