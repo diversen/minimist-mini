@@ -12,7 +12,8 @@ function mini(opts) {
     this.helpMessage = function (filename) {
         
         var scriptPath = process.argv[1];
-        var helpFile = false;
+        scriptPath = fs.realpathSync(scriptPath);
+	var helpFile = false;
         var dirname = path.dirname(scriptPath);
         if (filename && fs.existsSync(dirname + '/' + filename)) {
             helpFile = dirname + '/' + filename;
