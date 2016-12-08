@@ -3,7 +3,7 @@
   "bin": {
     "minimist-mini-test": "./cli.js"
   },
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Mini minimist with auto generation of help using README.md (converted to text) as help - and simple parsing of option given to the CLI program",
   "main": "index.js",
   "scripts": {

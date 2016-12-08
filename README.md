@@ -10,7 +10,7 @@ Usage:
 // Opts are the same as in minimist
 
 // You don't really need opts
-// var m = require('./index')();
+// var m = require('minimist-mini')();
 
 // If you use opts then they will 
 // be cast as your opts declare
@@ -19,7 +19,7 @@ const opts = [];
 opts.boolean = ['help'];
 opts.string = ['test'];
 
-var m = require('./index')(opts);
+var m = require('minimist-mini')(opts);
 
 // Check if test is set and log it.
 var test = m.get('test');
