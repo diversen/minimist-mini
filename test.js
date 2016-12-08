@@ -1,4 +1,4 @@
-var mini = require('./index');
+var m = require('./index');
 
 // Opts are the same as in minimist
 var opts = [];
@@ -6,9 +6,6 @@ opts.boolean = ['help'];
 opts.string = ['test'];
 
 // Create object
-var m = new mini(opts);
-console.log(m);
-
 // Check if test is set
 var test = m.get('test');
 if (test){

@@ -35,6 +35,9 @@ function mini(opts) {
     this.get = function (index) {
         return getVal(this.parsed, index);
     };
+    
+    return this;
 };
 
-module.exports = mini;
+module.exports =  new mini;
+
