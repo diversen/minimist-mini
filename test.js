@@ -12,7 +12,10 @@ opts.string = ['test'];
 
 var m = require('./index')(opts);
 
-// Check if test is set and log it.
+// Any arguments without -- or -, e.g. files
+// console.log(m.parsed._);
+
+// Check if test is defined, and log it.
 var test = m.get('test');
 if (test){
     console.log(test);
