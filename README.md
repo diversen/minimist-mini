@@ -7,15 +7,12 @@ Install:
 Usage: 
 
 ~~~js
-var mini = require('minimist-mini');
+var m = require('minimist-mini');
 
 // Opts are the same as in minimist
 var opts = [];
 opts.boolean = ['help'];
 opts.string = ['test'];
-
-// Create object
-var m = new mini(opts);
 
 // Check if test is set using --test
 var test = m.get('test');
