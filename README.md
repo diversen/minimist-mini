@@ -1,23 +1,28 @@
 # minimist-mini
 
-Install: 
+A wrapper around minimist that automagically generates documentation from
+your module's `README.md` or `readme.md` file. It reads the .md file and parses it for display in
+your console application. 
+
+## Install: 
 
     npm install --save minimist-mini
 
-Usage: 
+## Usage: 
 
 ~~~js
 // Opts are the same as in minimist
 
-// You don't really need opts
+// Opts are not required. You can do like this:
 // var m = require('minimist-mini')();
 
 // If you use opts then they will 
-// be cast as your opts declare
+// be cast as your opts are declared
 
+// E.g.
 const opts = [];
-opts.boolean = ['help'];
-opts.string = ['test'];
+opts.boolean = ['help']; // true or false
+opts.string = ['test']; // string
 
 var m = require('minimist-mini')(opts);
 
@@ -38,6 +43,6 @@ if (m.get('help')) {
 }
 ~~~
 
-License: 
+## License: 
 
-MIT 
+MIT © [Dennis Iversen](https://github.com/diversen)
