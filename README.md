@@ -10,7 +10,7 @@ your console application.
 
 ## Usage: 
 
-~~~js
+```.js
 // Opts are the same as in minimist
 
 // Opts are not required. You can do like this:
@@ -41,7 +41,7 @@ if (test){
 if (m.get('help')) {
     m.helpMessage();
 }
-~~~
+```
 
 ## License: 
 
