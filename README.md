@@ -1,7 +1,9 @@
 # minimist-mini
 
-A wrapper around minimist that automagically generates documentation from
-your module's `README.md` or `readme.md` file. It reads the .md file and parses it for display in
+A wrapper around minimist that has some more logical methods for getting options and arguments.
+
+It can also automatically generate documentation from
+a module's `README.md` or `readme.md` file. It reads the .md file and parses it for display in
 your console application. 
 
 ## Install: 
@@ -11,36 +13,42 @@ your console application.
 ## Usage: 
 
 ```.js
-// Opts are the same as in minimist
+// Options are exactly as in minimist
+const opts = []; 
+opts.boolean = ['help']; 
+opts.string = ['option1']; 
+opts.string = ['options2']; 
+opts.default = { options1: 'default value' }; 
+opts.alias = { h: 'help' }; 
 
-// Opts are not required. You can do like this:
-// var m = require('minimist-mini')();
+const minimistMini = require('minimist-mini')(opts); 
 
-// If you use opts then they will 
-// be cast as your opts are declared
+// Check if help is defined, and log the value.
+var help = minimistMini.getOption('h'); 
+if (help){
 
-// E.g.
-const opts = [];
-opts.boolean = ['help']; // true or false
-opts.string = ['test']; // string
-
-var m = require('minimist-mini')(opts);
-
-// Check if test is set and log it.
-var test = m.get('test');
-if (test){
-    console.log(test);
+    // Default help is generated from README.md or readme.md
+    // Or you may specify a file in from your package
+    console.log(minimistMini.helpMessage())
+    process.exit(0);
 }
 
-// Check if help is set
-// and Output README.md as txt if set
-//
-// You can also set a file from current path, e.g.
-// 'docs/cli.md
+// Get single option
+console.log("value of option 'option1':"); 
+console.log(minimistMini.getOption('option1')); 
 
-if (m.get('help')) {
-    m.helpMessage();
-}
+// Get all options
+console.log("all options:"); 
+console.log(minimistMini.getOptions()); 
+
+// Get single argument
+console.log("value of argument 0:"); 
+console.log(minimistMini.getArgument(0)); 
+
+// Get all arguments
+console.log("all arguments:"); 
+console.log(minimistMini.getArguments()); 
+
 ```
 
 ## License: 

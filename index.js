@@ -3,46 +3,94 @@ var fs = require('fs');
 var path = require('path');
 var removeMd = require('remove-markdown');
 
+/**
+ * Generate a help message from a file, default is README.md or readme.md
+ * @param {*} filename 
+ * @returns 
+ */
+function getHelpMessage(filename) {
+    const scriptPath = fs.realpathSync(process.argv[1]);
+    const dirname = path.dirname(scriptPath);
+
+    let helpFile = null;
+
+    // List of potential help files
+    const potentialFiles = filename ? [filename, 'README.md', 'readme.md'] : ['README.md', 'readme.md'];
+
+    for (const file of potentialFiles) {
+        const filePath = path.join(dirname, file);
+        if (fs.existsSync(filePath)) {
+            helpFile = filePath;
+            break;
+        }
+    }
+
+    if (!helpFile) {
+        throw new Error('No help file found');
+    }
+
+    const help = fs.readFileSync(helpFile, { encoding: 'utf8' });
+    return removeMd(help);
+};
+
 function mini(opts) {
 
 	// Parse with minimist
-	this.parsed = require('minimist')(process.argv.slice(2), opts);
-	
-	// Help function
+	this.argv = require('minimist')(process.argv.slice(2), opts);
+	this.options = {}
+
+	// Iterate over argv and set options
+	for (var key in this.argv) {
+		if (key === '_') {
+			continue;
+		}
+		this.options[key] = this.argv[key];	
+	}
+
+	// Set arguments
+	this.arguments = this.argv._;
+
+	/**
+	 * console.log a help message from a file, defaults to README.md or readme.md
+	 * @param {*} filename 
+	 */
 	this.helpMessage = function (filename) {
-		
-		var scriptPath = process.argv[1];
-		scriptPath = fs.realpathSync(scriptPath);
-		
-		var helpFile = false;
-		var dirname = path.dirname(scriptPath);
-		if (filename && fs.existsSync(dirname + '/' + filename)) {
-			helpFile = dirname + '/' + filename;
-		}
-		if (helpFile === false) {
-			if (fs.existsSync(dirname + '/README.md')) {
-				helpFile = dirname + '/README.md';
-			}
-			
-			if (fs.existsSync(dirname + '/readme.md')) {
-				helpFile = dirname + '/readme.md';
-			}
-			
-		}
-		
-		if (!helpFile) {
-			console.log('No help. In order to give help add a README.md to your CLI program');
-		} else {
-			var help = fs.readFileSync(helpFile, {encoding: 'utf8'});
-			console.log(removeMd(help));
-		}
+		console.log(getHelpMessage(filename));
 	};
 
-	// Get value from parsed argv
-	this.get = function (index) {
-		return getVal(this.parsed, index);
-	};
-	
+	/**
+	 * Get a single option by index, e.g. 'h' or 'help'
+	 * @param {*} index 
+	 * @returns The value of the option or undefined
+	 */
+	this.getOption = function (index) {
+		return getVal(this.options, index);
+	}
+
+	/**
+	 * @returns All options
+	 */
+	this.getOptions = function () {
+		return this.options;
+	}
+
+	/**
+	 * Get a single argument by index, e.g. 0, 1, 2
+	 * @param {*} index 
+	 * @returns The value of the argument or undefined
+	 */
+	this.getArgument = function (index) {
+		return this.arguments[index];
+	}
+
+	/**
+	 * 
+	 * @returns All arguments
+	 */
+	this.getArguments = function () {
+		return this.arguments;
+	}
+
 	return this;
 };
 
