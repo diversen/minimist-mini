@@ -4,8 +4,8 @@ const process = require('process');
 const opts = [];
 opts.boolean = ['help'];
 opts.string = ['option1'];
-opts.string = ['options2'];
-opts.default = { options1: 'default value' };
+opts.string = ['option2'];
+opts.default = { option1: 'default value' };
 opts.alias = { h: 'help' };
 
 const minimistMini = require('./index')(opts);
